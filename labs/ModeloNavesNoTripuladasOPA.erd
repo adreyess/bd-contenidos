@@ -1,1 +1,144 @@
 erdiagram Model
+notation=crowsfoot
+
+entity Nave{
+    codigo_nave key
+    nombre
+    peso
+    longitud
+    anchura
+    velocidad_teorica
+    capacidad_prevista
+}
+
+entity Etapa_Desarrollo{
+    codigo_etapa key
+    nombre_etapa
+}
+
+entity Empleado{
+    numero_empleado key
+    nombre
+    apellido_1
+    apellido_2
+    categoria_profesional
+}
+
+entity Prototipo{
+    numero_serie key
+    numero_transpondedor unique
+    fecha_fabricacion
+}
+
+entity Prueba{
+    numero_prueba key
+    tipo
+    fecha
+    hora
+    duracion
+    informe
+}
+
+entity Ingeniero_Aeroespacial extends por_tipo_empleado{
+    numero_empleado key
+}
+
+entity Ingeniero_Software extends por_tipo_empleado{
+    numero_empleado key
+}
+
+entity Prueba_Extraplanetaria extends por_tipo_prueba{
+    numero_prueba key
+    kilometros_recorridos
+    consumo_combustible
+}
+
+entity Astronauta_Probador extends por_tipo_empleado{
+    numero_empleado key
+}
+
+weak entity Asignacion_Historica{
+    fecha_inicio partial-key
+    fecha_fin
+}
+
+weak entity Incidencia{
+    numero_incidencia partial-key
+    descripcion
+    fecha
+    hora
+    grado_gravedad
+}
+
+weak entity Revision{
+    fecha_revision partial-key
+    informe
+}
+
+hierarchy por_tipo_empleado Empleado partial disjoint
+hierarchy por_tipo_prueba Prueba partial
+
+
+relationship en_etapa_actual{
+    Nave[0..N] -> Etapa_Desarrollo[1..1]
+    fecha_desde
+}
+
+relationship completada_por{
+    Nave[0..N] -> Etapa_Desarrollo[0..N]
+    fecha_inicio
+    fecha_fin
+}
+
+relationship evoluciona_de{
+    Nave[0..N | "Derivado"] -> Nave[0..1 | "Original"]
+}
+
+relationship responsable_de{
+    Nave[1..1] -> Ingeniero_Aeroespacial[1..1]
+}
+
+relationship asignado_a{
+    Nave[1..1] -> Ingeniero_Software[1..N]
+    fecha_desde
+}
+
+relationship ha_tenido{
+    Asignacion_Historica[0..N] -> Nave[1..1]
+}
+
+relationship es_prototipo_de{
+    Prototipo[0..N] -> Nave[1..1]
+}
+
+relationship utiliza{
+    Prueba[0..N] -> Prototipo[1..1]
+}
+
+relationship supervisada_por{
+    Prueba[0..N] -> Empleado[1..1]
+}
+
+relationship es_controlada_por{
+    Prueba_Extraplanetaria[1..N] -> Astronauta_Probador[1..1]
+}
+
+relationship realizada_por{
+    Revision[0..N] -> Empleado[1..N]
+}
+
+relationship debida_a{
+    Revision[0..N] -> Incidencia[0..N]
+}
+
+weak relationship es_de{
+    Asignacion_Historica[0..N] -> Ingeniero_Software[1..1]
+}
+
+weak relationship sufre{
+    Incidencia[0..N] -> Prueba[1..1]
+}
+
+weak relationship pasa{
+    Revision[0..N] -> Prototipo[1..1]
+}
