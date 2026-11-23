@@ -436,16 +436,16 @@ Solución:
 
 Tabla resultado:
 
-| nombre   | apellido1 | diferenciaSueldoMedio | 
-| -------- | --------- | --------------------- |
-| Juana    | Sáinz     | 12000                 |
-| Alberto  | Campos    | 6750                  |
-| Fernando | Ojeda     | 4750                  |
-| Eduardo  | Ochoa     | 0                     |
-| José     | Pérez     | -3250                 |
-| Alicia   | Jiménez   | -6000                 |
-| Luis     | Pajares   | -6000                 |
-| Aurora   | Oliva     | -8250                 |
+| nombre   | apellido1 | diferenciaSueldoMedio |     |
+| -------- | --------- | --------------------- | --- |
+| Juana    | Sáinz     | 12000                 |     |
+| Alberto  | Campos    | 6750                  |     |
+| Fernando | Ojeda     | 4750                  |     |
+| Eduardo  | Ochoa     | 0                     |     |
+| José     | Pérez     | -3250                 |     |
+| Alicia   | Jiménez   | -6000                 |     |
+| Luis     | Pajares   | -6000                 |     |
+| Aurora   | Oliva     | -8250                 |     |
 
 ---
 ## Devuelve un conjunto de valores: `WHERE`

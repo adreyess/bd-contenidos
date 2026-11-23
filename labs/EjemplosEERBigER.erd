@@ -1,0 +1,39 @@
+erdiagram Model
+notation= crowsfoot
+
+entity Empleado {
+    dni key
+    nombre
+    fecha_nacimiento
+    direccion
+    telefono
+}
+
+
+
+entity Administrativo extends Empleado{
+    dni key
+    categoria
+}
+
+entity Tecnico extends Empleado {
+    dni key
+    nivel
+}
+
+entity Ingeniero extends Empleado{
+    dni key
+    tipo_ingeniero
+}
+
+entity Gerente extends Empleado{
+    dni key
+}
+
+entity Proyecto{  
+    codigo_proyecto key
+}
+
+relationship dirige{  
+    Gerente[1..1] -> Proyecto[1..N]
+}
